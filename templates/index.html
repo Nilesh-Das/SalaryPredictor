@@ -8,6 +8,10 @@
   <link href="{{ url_for('static', filename='css/bootstrap.min.css') }}" rel="stylesheet">
 
   <style>
+    body {
+      background-color: aqua;
+    }
+
     .bd-placeholder-img {
       font-size: 1.125rem;
       text-anchor: middle;
@@ -56,23 +60,32 @@
     </div>
   </nav>
 
-  <div class="container">
-    <br><br><br>
-  	<h1>Predict Salary Analysis</h1>
-
-       <!-- Main Input For Receiving Query to our ML -->
+  <div class="row">
+    <div class="container col-md-6 mt-5">
+    	<h1>Predict Salary Analysis</h1>
       <form action="{{ url_for('predict')}}"method="post">
-      	<input type="text" name="experience" placeholder="Experience" required="required" />
+        <div class="p-2">
+        	<input type="text" name="experience" placeholder="Experience" required="required" />
+        </div>
+        <div class="p-2">
           <input type="text" name="test_score" placeholder="Test Score" required="required" />
-  		<input type="text" name="interview_score" placeholder="Interview Score" required="required" />
+        </div>
+        <div class="p-2">
+          <input type="text" name="interview_score" placeholder="Interview Score" required="required" />
+        </div>
         <br><br>
-          <button type="submit" class="btn btn-primary btn-block btn-large">Predict</button>
+        <button type="submit" class="btn btn-primary btn-block btn-large mx-3">Predict</button>
       </form>
-
-     <br><br>
-     {{ prediction_text }}
-
+    </div>
+    <div class="container card bg-warning mt-5 mx-5" style="max-width: 30rem;">
+      <div class="card-header">Salary Prediction</div>
+      <div class="card-body">
+        <h4 class="card-text">Predicted Salary using ML</h4>
+        <p>{{prediction_text}}</p>
+      </div>
+    </div>
   </div>
+
   <script src="{{ url_for('static', filename='js/bootstrap.bundle.min.js') }}"></script>
 </body>
 </html>
